@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ANONYMOUS_USER_ID = 1
 # Application definition
 
 INSTALLED_APPS = (
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,12 +57,30 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'ecom',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'root',
+        'PASSWORD': 'abc123',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ayse.kucukk@gmail.com'
+EMAIL_HOST_PASSWORD = '13066550006'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
