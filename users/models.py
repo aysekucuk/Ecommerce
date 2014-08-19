@@ -8,13 +8,13 @@ class Accounts(UserenaBaseProfile):
                                 unique=True,
                                 verbose_name=_('user'),
                                 related_name='my_profile')
-    name = models.CharField(max_length = 200, verbose_name = ('name'))
-    surname = models.CharField(max_length = 200 , verbose_name = ('surname'))
-    email = models.EmailField(max_length = 500, verbose_name = ('email'))
-    join_date = models.DateTimeField(auto_now_add = True, blank = True, null = True, verbose_name = ('join date'))
+    name = models.CharField(max_length = 200, verbose_name = _('name'))
+    surname = models.CharField(max_length = 200 , verbose_name = _('surname'))
+    email = models.EmailField(max_length = 500, verbose_name = _('email'))
+    join_date = models.DateTimeField(auto_now_add = True, blank = True, null = True, verbose_name = _('join date'))
     slug = models.SlugField(max_length = 250, blank = True, null = True)
 
-    def __init__(self):
+    def __unicode__(self):
     	return self.name
 
 	def save(self):
