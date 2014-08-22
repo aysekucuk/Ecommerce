@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from userena.models import UserenaBaseProfile
 
-class Accounts(UserenaBaseProfile):
+class Account(UserenaBaseProfile):
     user = models.OneToOneField(User,
                                 unique=True,
                                 verbose_name=_('user'),
@@ -20,3 +20,7 @@ class Accounts(UserenaBaseProfile):
 	def save(self):
 		self.slug = slugify(self.user.username.upper())
 		super(Accounts, self).save()
+
+    class Meta:
+        verbose_name = _('Account')
+        verbose_name_plural = _('Accounts')
