@@ -35,7 +35,6 @@ class SignupForm(signupForm):
 		self.fields['password1'].label = u'Parola (parolanız en az 5 karakter olmalıdır)'
 
 
-
 	def clean_password1(self):
 		password = self.cleaned_data.get('password1')
 		# TODO Çevrilecek

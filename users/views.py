@@ -10,7 +10,7 @@ def login(request):
 	if request.user.is_authenticated():
 		return redirect('home')
 
-	return signin(request, template_name='auth/login.html')
+	return signin(request, template_name='login.html')
 
 @secure_required
 def forgotpassword(request):
@@ -22,7 +22,11 @@ def signup(request):
 	if request.user.is_authenticated():
 		return redirect('home')
 
-	return Signup(request, template_name='auth/signup.html', signup_form=SignupForm)
+	return Signup(request, template_name='login.html', signup_form=SignupForm)
 
 def logout(request):
 	return signout(request, next_page="/")
+
+@secure_required
+def profile(request, username, type=None):
+	pass
